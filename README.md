@@ -1,4 +1,4 @@
-# CATAAS iOS App - Felipe Mendes
+# CATAAS iOS App
 
 ## Table of Contents
 
