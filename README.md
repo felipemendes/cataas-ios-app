@@ -13,6 +13,11 @@
 
 CATAAS (Cat as a Service) is a SwiftUI-based iOS application that displays a list of cats fetched from an API. The app is built with a focus on clean architecture, MVVM (Model-View-ViewModel) pattern, and uses Combine for reactive programming. The goal of this app is to provide a scalable and maintainable codebase while demonstrating modern iOS development practices.
 
+| Home    | Details | Home | Details |
+| -------- | ------- | ------- | ------- |
+| ![Simulator Screenshot - iPhone 15 Pro - 2024-05-28 at 23 18 32](https://github.com/felipemendes/cataas-ios-app/assets/3712089/e4e2c31d-6d2b-4cf4-8ec4-9261609a9a51)  | ![Simulator Screenshot - iPhone 15 Pro - 2024-05-28 at 23 19 01](https://github.com/felipemendes/cataas-ios-app/assets/3712089/1ac5bf06-46a6-4014-9ef0-b57b589b28fb)    | ![Simulator Screenshot - iPhone 15 Pro - 2024-05-28 at 23 17 48](https://github.com/felipemendes/cataas-ios-app/assets/3712089/776c6c51-a002-44d7-83a3-cfd4bed68972)    | ![Simulator Screenshot - iPhone 15 Pro - 2024-05-28 at 23 29 36](https://github.com/felipemendes/cataas-ios-app/assets/3712089/2215eaf8-ed75-4228-9e0b-8865199d17a6)    |
+
+
 ## Architecture
 
 The app follows the Clean Architecture and MVVM (Model-View-ViewModel) design pattern with the Coordinator pattern for navigation. The project is structured into three main layers:
