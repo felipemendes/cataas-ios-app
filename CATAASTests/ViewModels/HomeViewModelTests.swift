@@ -13,18 +13,21 @@ class HomeViewModelTests: XCTestCase {
 
     var sut: HomeViewModel!
     var mockService: MockCatService!
+    var mockAppLogger: MockLogger!
     var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
         mockService = MockCatService()
-        sut = HomeViewModel(catService: mockService)
+        mockAppLogger = MockLogger()
+        sut = HomeViewModel(catService: mockService, appLogger: mockAppLogger)
         cancellables = []
     }
 
     override func tearDown() {
         sut = nil
         mockService = nil
+        mockAppLogger = nil
         cancellables = nil
         super.tearDown()
     }
@@ -52,9 +55,9 @@ class HomeViewModelTests: XCTestCase {
         XCTAssertNil(sut.errorMessage)
     }
 
-    func testFetchCatsFailure() {
+    func testFetchCatsFailure_badURLResponse() {
         // Given
-        let error = NSError(domain: "Test", code: 1, userInfo: [NSLocalizedDescriptionKey: "The operation couldn’t be completed. (Test error 1.)"])
+        let error = NetworkingError.badURLResponse(url: URL(string: "mock_url")!)
         mockService.fetchCatsResult = .failure(error)
 
         // When
@@ -70,9 +73,52 @@ class HomeViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
 
         XCTAssertEqual(sut.cats, [])
-        XCTAssertEqual(sut.errorMessage, "The operation couldn’t be completed. (Test error 1.)")
+        XCTAssertEqual(sut.errorMessage, "Oops! We received an unexpected error. Please check your internet connection and try again later")
         XCTAssertFalse(sut.isLoading)
-        XCTAssertFalse(sut.hasMoreData)
+    }
+    
+    func testFetchCatsFailure_statusCodeError() {
+        // Given
+        let error = NetworkingError.statusCodeError(code: 1, url: URL(string: "mock_url")!)
+        mockService.fetchCatsResult = .failure(error)
+
+        // When
+        let expectation = XCTestExpectation(description: "Fetch cats failure")
+
+        sut.$errorMessage.dropFirst().sink { _ in
+            expectation.fulfill()
+        }.store(in: &cancellables)
+
+        sut.fetchCats()
+
+        // Then
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertEqual(sut.cats, [])
+        XCTAssertEqual(sut.errorMessage, "We're sorry, but we encountered an issue while trying to access the data. Please check your internet connection and try again later")
+        XCTAssertFalse(sut.isLoading)
+    }
+
+    func testFetchCatsFailure_unknown() {
+        // Given
+        let error = NetworkingError.unknown
+        mockService.fetchCatsResult = .failure(error)
+
+        // When
+        let expectation = XCTestExpectation(description: "Fetch cats failure")
+
+        sut.$errorMessage.dropFirst().sink { _ in
+            expectation.fulfill()
+        }.store(in: &cancellables)
+
+        sut.fetchCats()
+
+        // Then
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertEqual(sut.cats, [])
+        XCTAssertEqual(sut.errorMessage, "An unexpected error occurred. Please check your internet connection and try again later.")
+        XCTAssertFalse(sut.isLoading)
     }
 
     func testFetchCatsNoMoreData() {

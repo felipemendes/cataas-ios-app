@@ -13,12 +13,14 @@ protocol LocalFileManagerProtocol {
 }
 
 final class LocalFileManager: LocalFileManagerProtocol {
+
+    private let appLogger: LoggerProtocol
     
-    // MARK: - Initializer
-
-    init() { }
-
-    // MARK: - Public API
+    init(
+        appLogger: LoggerProtocol = AppLogger(subsystem: "com.cataas", category: "file_manager")
+    ) {
+        self.appLogger = appLogger
+    }
 
     func saveImage(image: UIImage, imageName: String, folderName: String) {
         createFolderIfNeeded(folderName: folderName)
@@ -31,7 +33,7 @@ final class LocalFileManager: LocalFileManagerProtocol {
         do {
             try data.write(to: url)
         } catch {
-            print("Local File Manager Error Saving Image. FolderName: \(folderName): \(error)")
+            appLogger.error("Local File Manager Error Saving Image. FolderName: \(folderName): \(error)")
         }
     }
 
@@ -43,8 +45,6 @@ final class LocalFileManager: LocalFileManagerProtocol {
 
         return UIImage(contentsOfFile: url.path)
     }
-
-    // MARK: - Private
 
     private func getURLForFolder(folderName: String) -> URL? {
         guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
@@ -63,7 +63,7 @@ final class LocalFileManager: LocalFileManagerProtocol {
             do {
                 try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             } catch {
-                print("Local File Manager Error creating directory. FolderName: \(folderName): \(error)")
+                appLogger.error("Local File Manager Error creating directory. FolderName: \(folderName): \(error)")
             }
         }
     }

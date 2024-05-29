@@ -9,5 +9,5 @@ import Foundation
 
 struct AppConstants {
     static let baseURL = "cataas.com"
-    static let imageFolderName = "CatImages"
+    static let imageFolderName = "cataas_images"
 }

@@ -10,8 +10,6 @@ import Foundation
 
 enum CatAPI {
 
-    // MARK: - Public API
-
     static func fetchCats(limit: Int = 10, skip: Int = 0) -> AnyPublisher<[CatResponse], Error> {
         let endpoint = Endpoint(path: "/cats", queryItems: [
             URLQueryItem(name: "limit", value: "\(limit)"),
@@ -25,8 +23,6 @@ enum CatAPI {
             .decode(type: [CatResponse].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-
-    // MARK: - Private
 
     private static func handleHTTPResponse(_ result: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard let response = result.response as? HTTPURLResponse else {

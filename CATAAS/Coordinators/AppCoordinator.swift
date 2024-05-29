@@ -9,16 +9,13 @@ import SwiftUI
 
 final class AppCoordinator: ObservableObject {
 
-    // MARK: - Public API
-
-    var homeCoordinator: HomeCoordinator?
-
-    func start() -> some View {
-        homeCoordinator = HomeCoordinator()
-        return homeCoordinator?.start(catService: catService)
-    }
-
-    // MARK: - Private
-
+    private(set) var homeCoordinator = HomeCoordinator()
     private let catService = CatService()
+    private let networkLogger = AppLogger(subsystem: "com.cataas", category: "networking")
+    
+    func start() -> some View {
+        return homeCoordinator.start(
+            catService: catService,
+            appLogger: networkLogger)
+    }
 }

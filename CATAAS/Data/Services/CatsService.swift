@@ -10,15 +10,13 @@ import Foundation
 
 final class CatService: CatServiceProtocol {
 
-    // MARK: - Initializer
+    private let repository: CatRepositoryProtocol
 
     init(repository: CatRepositoryProtocol = CatRepository()) {
         self.repository = repository
     }
 
-    // MARK: - Public API
-
-    func fetchCats(limit: Int = 10, skip: Int = 0) -> AnyPublisher<[CatResponse], Error> {
+    func fetchCats(limit: Int = 10, skip: Int = 0) -> AnyPublisher<[CatResponse], NetworkingError> {
         repository.getCats(limit: limit, skip: skip)
             .mapError { error in
                 guard let urlError = error as? URLError else {
@@ -31,8 +29,4 @@ final class CatService: CatServiceProtocol {
             }
             .eraseToAnyPublisher()
     }
-
-    // MARK: - Private
-
-    private let repository: CatRepositoryProtocol
 }

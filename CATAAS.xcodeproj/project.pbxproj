@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020ED30B2C06500100A0FEC8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020ED30A2C06500100A0FEC8 /* AppCoordinator.swift */; };
+		020ED30D2C06726B00A0FEC8 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020ED30C2C06726B00A0FEC8 /* AppLogger.swift */; };
+		020ED30F2C067D6B00A0FEC8 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020ED30E2C067D6B00A0FEC8 /* MockLogger.swift */; };
+		020ED3122C06ABC900A0FEC8 /* LoadMoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020ED3112C06ABC900A0FEC8 /* LoadMoreButton.swift */; };
+		020ED3142C06B16300A0FEC8 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020ED3132C06B16300A0FEC8 /* ErrorView.swift */; };
 		026A23842BF52C6C00EE8233 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A23832BF52C6C00EE8233 /* IntegrationTests.swift */; };
 		026A23862BF52C9100EE8233 /* HomeViewIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A23852BF52C9100EE8233 /* HomeViewIntegrationTests.swift */; };
 		027CB87A2BF3B54F004706F0 /* CatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027CB8792BF3B54F004706F0 /* CatImage.swift */; };
@@ -29,7 +34,6 @@
 		02AA73E32BF2A4BE008BDDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02AA73E22BF2A4BE008BDDA1 /* Assets.xcassets */; };
 		02AA73E62BF2A4BE008BDDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02AA73E52BF2A4BE008BDDA1 /* Preview Assets.xcassets */; };
 		02AA73EF2BF2A70B008BDDA1 /* CatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA73EE2BF2A70B008BDDA1 /* CatResponse.swift */; };
-		02D18A5F2BF30AFA00DF4656 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D18A5E2BF30AFA00DF4656 /* AppCoordinator.swift */; };
 		02D18A622BF30B1600DF4656 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D18A612BF30B1600DF4656 /* HomeCoordinator.swift */; };
 		02D18A672BF30BC400DF4656 /* CatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D18A662BF30BC400DF4656 /* CatRepository.swift */; };
 		02D18A692BF30BDF00DF4656 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D18A682BF30BDF00DF4656 /* HomeViewModel.swift */; };
@@ -54,6 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020ED30A2C06500100A0FEC8 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		020ED30C2C06726B00A0FEC8 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		020ED30E2C067D6B00A0FEC8 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
+		020ED3112C06ABC900A0FEC8 /* LoadMoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreButton.swift; sourceTree = "<group>"; };
+		020ED3132C06B16300A0FEC8 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		026A23832BF52C6C00EE8233 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
 		026A23852BF52C9100EE8233 /* HomeViewIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewIntegrationTests.swift; sourceTree = "<group>"; };
 		027CB8792BF3B54F004706F0 /* CatImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImage.swift; sourceTree = "<group>"; };
@@ -77,7 +86,6 @@
 		02AA73E22BF2A4BE008BDDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02AA73E52BF2A4BE008BDDA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		02AA73EE2BF2A70B008BDDA1 /* CatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatResponse.swift; sourceTree = "<group>"; };
-		02D18A5E2BF30AFA00DF4656 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		02D18A612BF30B1600DF4656 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		02D18A662BF30BC400DF4656 /* CatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatRepository.swift; sourceTree = "<group>"; };
 		02D18A682BF30BDF00DF4656 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -127,6 +135,8 @@
 				027CB87B2BF3C1CC004706F0 /* CatCardView.swift */,
 				027CB8792BF3B54F004706F0 /* CatImage.swift */,
 				027CB87D2BF3C8E2004706F0 /* TagsView.swift */,
+				020ED3112C06ABC900A0FEC8 /* LoadMoreButton.swift */,
+				020ED3132C06B16300A0FEC8 /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				02AA73DE2BF2A4BC008BDDA1 /* CATAASApp.swift */,
-				02D18A5E2BF30AFA00DF4656 /* AppCoordinator.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -271,6 +280,7 @@
 		02D18A602BF30B0400DF4656 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				020ED30A2C06500100A0FEC8 /* AppCoordinator.swift */,
 				02D18A612BF30B1600DF4656 /* HomeCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -320,6 +330,7 @@
 			children = (
 				02D18A822BF3127700DF4656 /* MockCatService.swift */,
 				027CB8902BF40CF4004706F0 /* MockURLProtocol.swift */,
+				020ED30E2C067D6B00A0FEC8 /* MockLogger.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -338,6 +349,7 @@
 			children = (
 				02D18A862BF3147C00DF4656 /* LocalFileManager.swift */,
 				02965FE12BF320B600200A33 /* ImageLoader.swift */,
+				020ED30C2C06726B00A0FEC8 /* AppLogger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -460,11 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				020ED3142C06B16300A0FEC8 /* ErrorView.swift in Sources */,
+				020ED30B2C06500100A0FEC8 /* AppCoordinator.swift in Sources */,
 				029FA8242BF2B7AA00AF5574 /* CatsService.swift in Sources */,
 				027CB8802BF3CF83004706F0 /* Color+Extension.swift in Sources */,
 				02D18A872BF3147C00DF4656 /* LocalFileManager.swift in Sources */,
 				027CB8822BF3D81F004706F0 /* AppConstants.swift in Sources */,
 				02965FE42BF3220B00200A33 /* NetworkingError.swift in Sources */,
+				020ED30D2C06726B00A0FEC8 /* AppLogger.swift in Sources */,
 				02965FE22BF320B600200A33 /* ImageLoader.swift in Sources */,
 				027CB87A2BF3B54F004706F0 /* CatImage.swift in Sources */,
 				02965FE62BF3237400200A33 /* CatServiceProtocol.swift in Sources */,
@@ -474,13 +489,13 @@
 				029FA81A2BF2B45000AF5574 /* CatAPI.swift in Sources */,
 				02D18A6B2BF30BE800DF4656 /* DetailViewModel.swift in Sources */,
 				027CB87E2BF3C8E2004706F0 /* TagsView.swift in Sources */,
-				02D18A5F2BF30AFA00DF4656 /* AppCoordinator.swift in Sources */,
 				02D18A6D2BF30BF200DF4656 /* DetailView.swift in Sources */,
 				02AA73DF2BF2A4BC008BDDA1 /* CATAASApp.swift in Sources */,
 				029FA8182BF2B36900AF5574 /* Endpoint.swift in Sources */,
 				02AA73EF2BF2A70B008BDDA1 /* CatResponse.swift in Sources */,
 				02D18A802BF311D700DF4656 /* HomeView.swift in Sources */,
 				02D18A672BF30BC400DF4656 /* CatRepository.swift in Sources */,
+				020ED3122C06ABC900A0FEC8 /* LoadMoreButton.swift in Sources */,
 				02D18A622BF30B1600DF4656 /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +510,7 @@
 				027CB8892BF4096D004706F0 /* HomeCoordinatorTests.swift in Sources */,
 				02D18A772BF30D0E00DF4656 /* HomeViewModelTests.swift in Sources */,
 				02D18A7E2BF30D3200DF4656 /* DetailViewModelTests.swift in Sources */,
+				020ED30F2C067D6B00A0FEC8 /* MockLogger.swift in Sources */,
 				026A23862BF52C9100EE8233 /* HomeViewIntegrationTests.swift in Sources */,
 				02D18A832BF3127700DF4656 /* MockCatService.swift in Sources */,
 				027CB88F2BF40CD2004706F0 /* CatAPITests.swift in Sources */,

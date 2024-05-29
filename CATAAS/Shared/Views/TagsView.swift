@@ -11,14 +11,20 @@ struct TagsView: View {
 
     let cat: CatResponse
     let font: Font
-    let lineLimit: Int
+    private let hSpacing: CGFloat = 8
 
     var body: some View {
-        Text(tagsText)
-            .font(font)
-            .foregroundStyle(Color.theme.secondaryText)
-            .lineLimit(lineLimit)
-            .truncationMode(.tail)
+        HStack(spacing: hSpacing) {
+            Image(systemName: "tag.circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundStyle(Color.theme.accent, Color.theme.secondaryText)
+
+            Text(tagsText)
+                .font(font)
+                .foregroundStyle(Color.theme.secondaryText)
+                .truncationMode(.tail)
+        }
     }
 
     private var tagsText: String {
@@ -27,5 +33,5 @@ struct TagsView: View {
 }
 
 #Preview {
-    TagsView(cat: CatResponse.fake(), font: .headline, lineLimit: 2)
+    TagsView(cat: CatResponse.fake(), font: .headline)
 }

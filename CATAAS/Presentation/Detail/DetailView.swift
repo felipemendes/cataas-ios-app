@@ -13,7 +13,9 @@ struct DetailView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TagsView(cat: viewModel.cat, font: .headline, lineLimit: 2)
+            TagsView(
+                cat: viewModel.cat, 
+                font: .headline)
             
             CatImage(cat: viewModel.cat)
                 .padding(.bottom)

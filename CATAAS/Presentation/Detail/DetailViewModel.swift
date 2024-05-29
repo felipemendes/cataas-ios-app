@@ -9,13 +9,9 @@ import Foundation
 
 final class DetailViewModel: ObservableObject {
 
-    // MARK: - Initializer
-
+    @Published var cat: CatResponse
+    
     init(cat: CatResponse) {
         self.cat = cat
     }
-
-    // MARK: - Public API
-
-    @Published var cat: CatResponse
 }

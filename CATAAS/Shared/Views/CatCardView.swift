@@ -13,18 +13,29 @@ struct CatCardView: View {
     private let cornerRadius: CGFloat = 10
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             CatImage(cat: cat)
 
             if !cat.tags.isEmpty {
-                TagsView(cat: cat, font: .subheadline, lineLimit: 1)
-                    .padding([.horizontal, .bottom])
+                TagsView(
+                    cat: cat,
+                    font: .subheadline
+                )
+                .padding([.horizontal, .bottom], 10)
             }
         }
         .background(
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(Color.theme.secondaryBackground)
-                .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
+            RoundedRectangle(
+                cornerRadius: cornerRadius
+            )
+            .fill(
+                Color.theme.secondaryBackground
+            )
+            .shadow(
+                color: .black.opacity(0.1),
+                radius: 5,
+                x: 0,
+                y: 5)
         )
     }
 }

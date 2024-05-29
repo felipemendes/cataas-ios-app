@@ -8,34 +8,41 @@
 import SwiftUI
 import Combine
 
-protocol ImageLoaderProtocol {
+protocol ImageLoaderProtocol: ObservableObject {
     var image: UIImage? { get }
-    var imageSubscription: AnyCancellable? { get }
+    var isLoading: Bool { get }
+    var error: NetworkingError? { get }
 
     func fetchImage()
 }
 
 final class ImageLoader: ObservableObject, ImageLoaderProtocol {
 
-    // MARK: - Initializer
+    @Published var image: UIImage? = nil
+    @Published var isLoading: Bool = false
+    @Published var error: NetworkingError? = nil
 
-    init(fileManager: LocalFileManagerProtocol = LocalFileManager(), url: URL, imageName: String) {
+    private let session: URLSession
+    private let fileManager: LocalFileManagerProtocol
+    private let url: URL
+    private let imageName: String
+    private var imageSubscription: AnyCancellable?
+    private let folderName = AppConstants.imageFolderName
+
+    init(
+        session: URLSession = URLSession.shared,
+        fileManager: LocalFileManagerProtocol = LocalFileManager(),
+        url: URL, imageName: String
+    ) {
+        self.session = session
         self.fileManager = fileManager
         self.url = url
         self.imageName = imageName
     }
 
-    // MARK: - Public API
-
-    @Published var image: UIImage? = nil
-    @Published var isLoading: Bool = false
-    @Published var error: NetworkingError? = nil
-
-    var imageSubscription: AnyCancellable?
-
     func fetchImage() {
         if let savedImage = fileManager.getImage(imageName: imageName, folderName: folderName) {
-            image = savedImage
+            self.image = savedImage
             print("✅ Retrieving local image for URL: \(url.absoluteString)")
         } else {
             downloadImage()
@@ -43,16 +50,10 @@ final class ImageLoader: ObservableObject, ImageLoaderProtocol {
         }
     }
 
-    // MARK: - Private
-
-    private let fileManager: LocalFileManagerProtocol
-    private let url: URL
-    private let imageName: String
-    private let folderName = AppConstants.imageFolderName
-
     private func downloadImage() {
         isLoading = true
-        imageSubscription = URLSession.shared.dataTaskPublisher(for: url)
+
+        imageSubscription = session.dataTaskPublisher(for: url)
             .tryMap { result -> UIImage? in
                 guard let response = result.response as? HTTPURLResponse, response.statusCode == 200 else {
                     throw NetworkingError.badURLResponse(url: self.url)
@@ -64,8 +65,6 @@ final class ImageLoader: ObservableObject, ImageLoaderProtocol {
                 guard let self = self else {
                     return
                 }
-
-                self.isLoading = false
 
                 switch completion {
                 case .finished: break
@@ -84,8 +83,10 @@ final class ImageLoader: ObservableObject, ImageLoaderProtocol {
                 }
 
                 self.image = downloadedImage
-                self.imageSubscription?.cancel()
+                self.isLoading = false
                 self.fileManager.saveImage(image: downloadedImage, imageName: self.imageName, folderName: self.folderName)
+
+                self.imageSubscription?.cancel()
             })
     }
 }

@@ -10,18 +10,24 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
 
-    // MARK: - Initializer
-
-    init(catService: CatServiceProtocol = CatService()) {
-        self.catService = catService
-    }
-
-    // MARK: - Public API
-
     @Published var cats: [CatResponse] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     @Published var hasMoreData: Bool = true
+
+    private let appLogger: LoggerProtocol
+    private let catService: CatServiceProtocol
+    private var cancellables = Set<AnyCancellable>()
+    private var currentPage: Int = 0
+    private let pageSize: Int = 10
+
+    init(
+        catService: CatServiceProtocol,
+        appLogger: LoggerProtocol
+    ) {
+        self.catService = catService
+        self.appLogger = appLogger
+    }
 
     func fetchCats() {
         guard !isLoading && hasMoreData else {
@@ -42,23 +48,16 @@ final class HomeViewModel: ObservableObject {
                 switch completion {
                 case .finished: break
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
-                    self.hasMoreData = false
+                    self.errorMessage = error.friendlyLocalizedDescription
+                    appLogger.error(error.errorDescription)
                 }
             }, receiveValue: { [weak self] newCats in
-                self?.update(newCats)
+                self?.updateResponse(with: newCats)
             })
             .store(in: &cancellables)
     }
 
-    // MARK: - Private
-    
-    private let catService: CatServiceProtocol
-    private var cancellables = Set<AnyCancellable>()
-    private var currentPage: Int = 0
-    private let pageSize: Int = 10
-
-    private func update(_ newCats: [CatResponse]) {
+    private func updateResponse(with newCats: [CatResponse]) {
         cats.append(contentsOf: newCats)
         currentPage += 1
         hasMoreData = newCats.count == self.pageSize

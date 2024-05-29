@@ -8,5 +8,5 @@
 import Combine
 
 protocol CatServiceProtocol {
-    func fetchCats(limit: Int, skip: Int) -> AnyPublisher<[CatResponse], Error>
+    func fetchCats(limit: Int, skip: Int) -> AnyPublisher<[CatResponse], NetworkingError>
 }

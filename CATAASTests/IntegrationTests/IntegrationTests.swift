@@ -12,11 +12,13 @@ import Combine
 class IntegrationTests: XCTestCase {
 
     var mockService: MockCatService!
+    var mockAppLogger: MockLogger!
     var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
         mockService = MockCatService()
+        mockAppLogger = MockLogger()
         cancellables = []
     }
 
@@ -33,7 +35,7 @@ class IntegrationTests: XCTestCase {
             CatResponse(id: "2", mimetype: "image/jpeg", size: 67890, tags: ["funny"])
         ])
 
-        let homeViewModel = HomeViewModel(catService: mockService)
+        let homeViewModel = HomeViewModel(catService: mockService, appLogger: mockAppLogger)
         let expectation = XCTestExpectation(description: "Fetch and display cats")
 
         // When

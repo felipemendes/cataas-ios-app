@@ -9,13 +9,14 @@ import SwiftUI
 
 final class HomeCoordinator: ObservableObject {
 
-    // MARK: - Public API
-
     @Published var homeViewModel: HomeViewModel?
     @Published var selectedCat: CatResponse?
 
-    func start(catService: CatServiceProtocol) -> some View {
-        HomeView(viewModel: homeViewModel ?? HomeViewModel(catService: catService))
+    func start(
+        catService: CatServiceProtocol,
+        appLogger: LoggerProtocol) -> some View
+    {
+        HomeView(viewModel: homeViewModel ?? HomeViewModel(catService: catService, appLogger: appLogger))
             .environmentObject(self)
     }
 
